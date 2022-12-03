@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import axios from "axios";
+import ListForNGOs from "../pages/ListForNGOs";
 
 export default function Navbar1 () {
 
@@ -20,7 +21,7 @@ export default function Navbar1 () {
             >
               <Nav.Link href="/">About</Nav.Link>
               <Nav.Link href="/donate">Donate</Nav.Link>
-              <Nav.Link href="/list">List</Nav.Link>
+              <Nav.Link href="/listforngos">List</Nav.Link>
               <Nav.Link href={(localStorage.getItem('name') == null) ? '/login' : '/profile'}>{(localStorage.getItem('name') == null) ? 'Login' : localStorage.getItem('name')}</Nav.Link>
               
             </Nav>
