@@ -1,0 +1,55 @@
+
+.profile{
+    padding: 4rem 6rem;
+    display: flex;
+    min-height:600px ;
+}
+
+.profile_heading{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    color: black;
+}
+
+.profile-details{
+    width: 40%;
+    margin: 0 auto;
+    border: 2px solid orange;
+    border-radius: 5px;
+}
+
+.profile-details img{
+    box-shadow: 0 0 10px black;
+    height: 200px;
+    margin: auto;
+    width: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-details button{
+   justify-content: center;
+}
+
+.profile-details h4 span{
+    color: blueviolet;
+}
+
+.m-auto{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    color: black;
+}
+
+.profile-add{
+    width: 75%;
+    margin-left: 70px;
+    border: 2px solid orange;
+}
+
+.item-info{
+    display:flex ;
+    justify-content: space-around;
+}
