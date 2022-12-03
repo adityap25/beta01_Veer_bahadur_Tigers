@@ -7,7 +7,6 @@ from account.renderers import UserRenderer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 
-
 # Generate Token Manually
 def get_tokens_for_user(user):
   refresh = RefreshToken.for_user(user)
@@ -15,6 +14,7 @@ def get_tokens_for_user(user):
       'refresh': str(refresh),
       'access': str(refresh.access_token),
   }
+
 
 class UserRegistrationView(APIView):
   renderer_classes = [UserRenderer]
@@ -28,7 +28,6 @@ class UserRegistrationView(APIView):
 class UserLoginView(APIView):
   renderer_classes = [UserRenderer]
   def post(self, request, format=None):
-    print('g')
     serializer = UserLoginSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
     email = serializer.data.get('email')

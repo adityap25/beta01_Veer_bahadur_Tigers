@@ -18,7 +18,7 @@ export default function Register() {
         e.preventDefault();
         
         console.log(password);
-        await axios.post('http://localhost:3001/admin/login', {
+        await axios.post('http://127.0.0.1:8000/api/user/register/', {
             email,
             name,
             mobile,
@@ -26,8 +26,10 @@ export default function Register() {
             password,
             password2
 
-        }).then(res => {
-            if (res.data === 'Success') {
+        }, {withCredentials : false}) 
+        .then(res => {
+            console.log(res);
+            if (res.data.msg === 'Registration Successful') {
                 navigate('/login');
             }
             console.log(res);
