@@ -18,18 +18,14 @@ import json
 def donation(request):
     
     if request.method=='GET':
-        print (request.user)
-        stu=Donation.objects.filter(status=1).values()
+        stu=Donation.objects.filter(status=1)
         serializer=DonationSerializer(stu,many=True)
         return JsonResponse(serializer.data,safe=False)
 
     if request.method=='POST':
         data=request.data
-        _mutable = data._mutable
-        data._mutable = True
-        print(request.user)
-        data['donor'] = f"{request.user}"
-        data['reciever'] = f"{request.user}"
+        data['donor']=f"{request.user}"
+        data['reciever']=f"{request.user}"
         serializer=DonationSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
@@ -38,7 +34,6 @@ def donation(request):
         return JsonResponse(serializer.errors)
     
     if request.method=='PUT':
-        print (request.data)
         id=request.data['id']
         stu=Donation.objects.get(id=id)
         serializer=DonationSerializer(stu,data=request.data,partial=True)
@@ -68,8 +63,10 @@ def admin_status0(request):
 
     if request.method=='PUT':
         id=request.data['id']
+        print(id)
         stu=Donation.objects.get(id=id)
-        serializer=DonationSerializer(stu,data=request.data,partial=True)
+        data={'donor':stu.donor,'status':1}
+        serializer=DonationSerializer(stu,data=data,partial=True)
         if serializer.is_valid():
             serializer.save()
             res={'msg':'updated successfully'}
@@ -83,6 +80,7 @@ def admin_status2(request):
     if request.method=='PUT':
         id=request.data['id']
     stu=Donation.objects.get(id=id)
+
     serializer=DonationSerializer(stu,data=request.data,partial=True)
     if serializer.is_valid():
         serializer.save()
@@ -97,9 +95,14 @@ def admin_status2(request):
 @permission_classes([IsAuthenticated,IsAdminUser])
 def admin_view_zero(request):
     if request.method== 'GET':
-        mydata = Donation.objects.filter(status=0).values()
-        serializer=DonationSerializer(mydata,many=True)
-        return JsonResponse(serializer.data,safe=False)
+        mydata = Donation.objects.filter(status=0)
+        ans=[]
+        for stu in mydata:
+            data=DonationSerializer(stu).data
+            id=stu.pk
+            data['id']=id
+            ans.append(data)
+        return JsonResponse(ans,safe=False)
 
 
 @api_view(['GET', 'POST','PUT','DELETE'])

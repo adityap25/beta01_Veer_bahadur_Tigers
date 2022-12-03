@@ -11,15 +11,16 @@ const ContextCart = () => {
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
+    const token = localStorage.getItem('token')
     console.log(item)
     e.preventDefault();
-    await axios.post('http://127.0.0.1:8000/api/user/register/', {
+    await axios.post('http://127.0.0.1:8000/api/donation/', {
       wheat : item[0].quantity,
       rice : item[1].quantity,
       milk : item[2].quantity,
       fruits : item[3].quantity,
-      pin : '123456'
-    }, { withCredentials: false })
+      pin : 123456
+    }, { headers: {"Authorization" : `Bearer ${token}`} })
       .then(res => {
         console.log(res);
         if (res.data.msg === 'Registration Successful') {

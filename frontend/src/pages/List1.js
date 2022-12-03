@@ -11,6 +11,8 @@ import Button from '@mui/material/Button'
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import SendIcon from '@mui/icons-material/Send';
+import axios from 'axios';
+import './list.css';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -32,25 +34,25 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, wheat, dal, fruits, milk) {
-  return { name, wheat, dal, fruits, milk};
+function createData(donor, wheat, rice, milk, fruits) {
+  return { donor, wheat, rice, fruits, milk};
 }
 
-const rows = [
-  createData('Sanjay', 1, 0, 4, 4, 1),
-  createData('Sanjay', 1, 0, 4, 4, 1),
-  createData('Sanjay', 1, 0, 4, 4, 1),
-  createData('Sanjay', 1, 0, 4, 4, 1),
-  createData('Sanjay', 1, 0, 4, 4, 1),
-  createData('Sanjay', 1, 0, 4, 4, 1),
-  createData('Sanjay', 1, 0, 4, 4, 1),
-  createData('Sanjay', 1, 0, 4, 4, 1),
-  createData('Sanjay', 1, 0, 4, 4, 1),
-  createData('Sanjay', 1, 0, 4, 4, 1),
-  createData('Sanjay', 1, 0, 4, 4, 1),
-  createData('Sanjay', 1, 0, 4, 4, 1),
-  createData('Sanjay', 1, 0, 4, 4, 1),
-];
+// let rows = [
+//   createData('Sanjay', 1, 0, 4, 4, 1),
+//   // createData('Sanjay', 1, 0, 4, 4, 1),
+//   // createData('Sanjay', 1, 0, 4, 4, 1),
+//   // createData('Sanjay', 1, 0, 4, 4, 1),
+//   // createData('Sanjay', 1, 0, 4, 4, 1),
+//   // createData('Sanjay', 1, 0, 4, 4, 1),
+//   // createData('Sanjay', 1, 0, 4, 4, 1),
+//   // createData('Sanjay', 1, 0, 4, 4, 1),
+//   // createData('Sanjay', 1, 0, 4, 4, 1),
+//   // createData('Sanjay', 1, 0, 4, 4, 1),
+//   // createData('Sanjay', 1, 0, 4, 4, 1),
+//   // createData('Sanjay', 1, 0, 4, 4, 1),
+//   // createData('Sanjay', 1, 0, 4, 4, 1),
+// ];
 
 export default function CustomizedTables() {
 
@@ -62,7 +64,49 @@ export default function CustomizedTables() {
             
   //   }, []);
 
+  const [data, setData] = React.useState([])
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    axios.get('http://127.0.0.1:8000/api/donation/admin/status/zero/', { headers: {"Authorization" : `Bearer ${token}`} })
+    .then(res => {
+        console.log(res)
+        setData(res.data)
+    })
+  }, []);
+
+  function onDelete(row) {
+    const token = localStorage.getItem('token')
+    console.log(row)
+    axios.delete('http://127.0.0.1:8000/api/donation/admin/zero/', {
+      headers: {
+        "Authorization" : `Bearer ${token}`
+      },
+      data: {
+        'id':row.id
+      }
+    })
+    window.location.reload()
+  }
+
+  function onSelect(row) {
+    const token = localStorage.getItem('token')
+    console.log(row.id)
+    axios.put('http://127.0.0.1:8000/api/donation/admin/zero/', {
+      headers: {
+        "Authorization" : `Bearer ${token}`
+      },
+      data: {
+        'id':row.id
+      }
+    })
+    // window.location.reload()
+  }
+
   return (
+
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
@@ -75,20 +119,26 @@ export default function CustomizedTables() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
+          {data.map((row, i) => (
+            <StyledTableRow key={i}>
               <StyledTableCell component="th" scope="row">
-                {row.name}
+                {row.donor}
               </StyledTableCell>
               <StyledTableCell align="right">{row.wheat}</StyledTableCell>
-              <StyledTableCell align="right">{row.dal}</StyledTableCell>
-              <StyledTableCell align="right">{row.fruits}</StyledTableCell>
+              <StyledTableCell align="right">{row.rice}</StyledTableCell>
               <StyledTableCell align="right">{row.milk}</StyledTableCell>
-              <Button variant="contained">
+              <StyledTableCell align="right">{row.fruits}</StyledTableCell>
+              <div className='list-button'>
+              <Button color='success' variant="contained" onClick={() => onSelect(row)}>
               &#x2713;
               </Button>
+              <Button color='error' variant="contained" onClick={() => onDelete(row)}>
+              &#x2717;
+              </Button>
+              </div>
             </StyledTableRow>
           ))}
+
         </TableBody>
       </Table>
     </TableContainer>
