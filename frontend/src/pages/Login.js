@@ -3,6 +3,23 @@ import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import ParticlesBg from "particles-bg";
+
+let config = {
+    num: [4, 7],
+    rps: 0.1,
+    radius: [5, 40],
+    life: [1.5, 3],
+    v: [2, 3],
+    tha: [-40, 40],
+    alpha: [0.6, 0],
+    scale: [.1, 0.4],
+    position: "all",
+    color: ["random", "#ff0000"],
+    cross: "dead",
+    // emitter: "follow",
+    random: 15
+};
 
 export default function Login() {
 
@@ -76,6 +93,9 @@ export default function Login() {
 
                 </form>
             </div>
+
+            <ParticlesBg type="custom" config={config} bg={true} />
+
         </div>
     );
 

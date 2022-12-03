@@ -8,6 +8,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button'
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 // import SendIcon from '@mui/icons-material/Send';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -51,6 +53,15 @@ const rows = [
 ];
 
 export default function CustomizedTables() {
+
+  // const navigate = useNavigate();
+  //   useEffect(() => {
+  //       const token = localStorage.getItem('token')
+  //       if(token == null)
+  //           navigate('/login')
+            
+  //   }, []);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -74,7 +85,7 @@ export default function CustomizedTables() {
               <StyledTableCell align="right">{row.fruits}</StyledTableCell>
               <StyledTableCell align="right">{row.milk}</StyledTableCell>
               <Button variant="contained">
-                Send
+              &#x2713;
               </Button>
             </StyledTableRow>
           ))}

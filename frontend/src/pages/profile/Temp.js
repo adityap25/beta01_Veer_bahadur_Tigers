@@ -10,7 +10,7 @@ const Temp = ({ data }) => {
                             <div className='item-info'>
                                 <header>
                                     <h4>{user}</h4>
-                                    <h4 className='price'>{date}</h4>
+                                    {/* <h4 className='price'>{date}</h4> */}
                                 </header>
                                 <p className='item-text'>{details}</p>
                             </div>

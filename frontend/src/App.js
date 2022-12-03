@@ -19,7 +19,9 @@ function App() {
         <Route path='/' element={<HomePage />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
+        {/* <Route path={(localStorage.getItem('token') != null) ? '/donate' : '/login'} element={<Donate />}/> */}
         <Route path='/donate' element={<Donate />}/>
+
         <Route path='/list' element={<List />}/>
         <Route path='/profile' element={<Profile />}/>
         

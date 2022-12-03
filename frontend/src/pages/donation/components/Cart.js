@@ -12,6 +12,8 @@ const initialState = {
   totalItem: 0,
 };
 
+// wheat : , rice : , milk, fruits :, pin :
+
 const Cart = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const removeItem = (id) => {
@@ -43,11 +45,22 @@ const Cart = () => {
     dispatch({ type: "GET_TOTAL" });
   }, [state.item]);
 
+  console.log(initialState)
   return (
-    <CartContext.Provider
+
+    // <div>
+      <CartContext.Provider
       value={{ ...state, removeItem, clearCart, increment, decrement }}>
       <ContextCart />
-    </CartContext.Provider>
+      </CartContext.Provider>
+    //   <div className="card-total">
+    //     <button>Approve Donations</button>                
+    //     <button className="clear-cart" onClick={clearCart}>
+    //       Clear Cart
+    //     </button>
+    //   </div>
+    // </div>
+    
   );
 };
 

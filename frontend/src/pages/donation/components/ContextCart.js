@@ -2,54 +2,56 @@ import React, { useContext } from "react";
 import { Scrollbars } from "react-custom-scrollbars-2";
 import Items from "./Items";
 import { CartContext } from "./Cart";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ContextCart = () => {
   const { item, clearCart, totalItem, totalAmount } = useContext(CartContext);
 
-  if (item.length === 0) {
-    return (
-      <>
-        <header>
-          <div className="continue-shopping">
-            <img src="./images/arrow.png" alt="arrow" className="arrow-icon" />
-            <h3>Donation</h3>
-          </div>
+  const navigate = useNavigate();
 
-          <div className="cart-icon">
-            <img src="./images/cart.png" alt="cart" />
-            <p>{totalItem}</p>
-          </div>
-        </header>
-
-        <section className="main-cart-section">
-          <h1>shopping Cart</h1>
-          <p className="total-items">
-            you have <span className="total-items-count">{totalItem} </span>{" "}
-            items in donation cart
-          </p>
-        </section>
-      </>
-    );
+  async function handleSubmit(e) {
+    console.log(item)
+    e.preventDefault();
+    await axios.post('http://127.0.0.1:8000/api/user/register/', {
+      wheat : item[0].quantity,
+      rice : item[1].quantity,
+      milk : item[2].quantity,
+      fruits : item[3].quantity,
+      pin : '123456'
+    }, { withCredentials: false })
+      .then(res => {
+        console.log(res);
+        if (res.data.msg === 'Registration Successful') {
+          navigate('/list');
+        }
+        // console.log(res);
+      }
+      ).catch(err => {
+        console.log(err);
+      }
+      );
+    console.log(item[0].quantity)
+    console.log("Working")
   }
 
   return (
     <>
       <header>
         <div className="continue-shopping">
-          <img src="./images/arrow.png" alt="arrow" className="arrow-icon" />
           <h3>Donation</h3>
         </div>
 
-        <div className="cart-icon">
+        {/* <div className="cart-icon">
           <img src="./images/cart.png" alt="cart" />
           <p>{totalItem}</p>
-        </div>
+        </div> */}
       </header>
 
       <section className="main-cart-section">
-        <h1>Donation Cart</h1>
+        <h2>Donation Cart</h2>
         <p className="total-items">
-          You have <span className="total-items-count">{totalItem} </span> quantity
+          You have <span className="total-items-count">_({totalItem})_</span> quantity of items
           in donation cart
         </p>
 
@@ -64,8 +66,7 @@ const ContextCart = () => {
         </div>
 
         <div className="card-total">
-        {/* from here need to send data of items */}
-          <button>Approve Donations</button>                
+          <button onClick={handleSubmit} >Approve Donations</button>
           <button className="clear-cart" onClick={clearCart}>
             Clear Cart
           </button>

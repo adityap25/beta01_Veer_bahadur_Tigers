@@ -22,9 +22,13 @@ export default function HomePage() {
     <div>
       
       <Navbar1 />
+      
       <Carousel1 />
-      <Counter />
+      
       <Text />
+      
+      <Counter />
+      
       <OurMission />
       <DonateNow />
       

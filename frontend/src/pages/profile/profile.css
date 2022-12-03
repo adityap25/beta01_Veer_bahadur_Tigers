@@ -15,8 +15,9 @@
 .profile-details{
     width: 40%;
     margin: 0 auto;
-    border: 2px solid orange;
+    border: 6px solid orange;
     border-radius: 5px;
+    max-height: 700px;
 }
 
 .profile-details img{
@@ -46,10 +47,18 @@
 .profile-add{
     width: 75%;
     margin-left: 70px;
-    border: 2px solid orange;
+    border: 6px solid orange;
+    max-height: 700px;
+    overflow: scroll;
 }
 
 .item-info{
     display:flex ;
     justify-content: space-around;
+    background: rgb(235, 225, 225);
+    border: 2px solid orange;
+}
+
+.item-info p{
+    max-width: min-content;
 }
