@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate
 from account.renderers import UserRenderer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view
 
 # Generate Token Manually
 def get_tokens_for_user(user):
@@ -62,5 +63,12 @@ class LogoutView(APIView):
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-
+@api_view(['GET', 'POST','PUT','DELETE'])
+def IsValid(request):
+  if request.method=='GET':
+    res={}
+    if request.user.is_authenticated:
+      res['name']='Profile'
+    else: res['name']='Login'  
+  return Response(res)
 
