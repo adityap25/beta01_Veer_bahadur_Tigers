@@ -30,14 +30,6 @@ export const products = [
     // price: "90500",
     img: "https://images.unsplash.com/photo-1517448931760-9bf4414148c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bWlsa3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
     quantity: 0,
-  },
-  {
-    id: 5,
-    title: "Vegetables",
-    // description: "black in color",
-    // price: "2500",
-    img: "https://images.unsplash.com/photo-1597362925123-77861d3fbac7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8dmVnZXRhYmxlc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
-    quantity: 0,
-  },
+  }
   
 ];

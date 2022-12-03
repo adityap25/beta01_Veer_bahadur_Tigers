@@ -13,6 +13,8 @@ import { useNavigate } from 'react-router-dom';
 // import SendIcon from '@mui/icons-material/Send';
 import axios from 'axios';
 import './list.css';
+import { Navbar } from 'react-bootstrap';
+import Navbar1 from '../components/Navbar1';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -94,6 +96,12 @@ export default function ListForNGOs() {
 
   return (
 
+    <div>
+    
+    <Navbar1 />
+
+    <br />
+
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
@@ -126,5 +134,7 @@ export default function ListForNGOs() {
         </TableBody>
       </Table>
     </TableContainer>
+    
+    </div>
   );
 }

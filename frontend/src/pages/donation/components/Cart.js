@@ -3,6 +3,7 @@ import "./cart.css";
 import { products } from "./products";
 import ContextCart from "./ContextCart";
 import { reducer } from "./reducer";
+import Navbar1 from "../../../components/Navbar1";
 
 export const CartContext = createContext();
 
@@ -48,18 +49,14 @@ const Cart = () => {
   console.log(initialState)
   return (
 
-    // <div>
+    <div>
+      <Navbar1 />
+      <br />
       <CartContext.Provider
       value={{ ...state, removeItem, clearCart, increment, decrement }}>
       <ContextCart />
       </CartContext.Provider>
-    //   <div className="card-total">
-    //     <button>Approve Donations</button>                
-    //     <button className="clear-cart" onClick={clearCart}>
-    //       Clear Cart
-    //     </button>
-    //   </div>
-    // </div>
+     </div>
     
   );
 };
