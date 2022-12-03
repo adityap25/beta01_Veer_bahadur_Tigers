@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Donation
 from .serializers import DonationSerializer
-from django.http import HttpResponse,JsonResponse
+from django.http import JsonResponse
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
@@ -93,11 +93,28 @@ def admin_status2(request):
     
 
 
-# @api_view(['GET', 'POST','PUT','DELETE'])
-# @permission_classes([IsAuthenticated,IsAdminUser])
-# def admin_view_zero(request):
-#     if request.method== 'GET':
-#         data= Donation.objects.get
+@api_view(['GET', 'POST','PUT','DELETE'])
+@permission_classes([IsAuthenticated,IsAdminUser])
+def admin_view_zero(request):
+    if request.method== 'GET':
+        mydata = Donation.objects.filter(status=0).values()
+        serializer=DonationSerializer(mydata,many=True)
+        return JsonResponse(serializer.data,safe=False)
+
+
+@api_view(['GET', 'POST','PUT','DELETE'])
+@permission_classes([IsAuthenticated,IsAdminUser])
+def admin_view_two(request):
+    if request.method== 'GET':
+        mydata = Donation.objects.filter(status=2).values()
+        serializer=DonationSerializer(mydata,many=True)
+        return JsonResponse(serializer.data,safe=False)
+
+
+
+
+
+
 
 
 
