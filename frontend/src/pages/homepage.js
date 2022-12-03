@@ -5,6 +5,7 @@ import Register from "./Register";
 import OurMission from "../components/OurMission"
 import Carousel1 from "../components/Carousel1";
 import Navbar1 from "../components/Navbar1";
+import DonateNow from "../components/DonateNow";
 
 export default function HomePage() {
   
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Counter />
       <Text />
       <OurMission />
+      <DonateNow />
       
     </div>
   );

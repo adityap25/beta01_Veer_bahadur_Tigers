@@ -7,6 +7,7 @@ import {Routes, Route} from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Donate from './pages/Donate';
 
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
          <Route path='/' element={<HomePage />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
+        <Route path='/donate' element={<Donate />}/>
+        
       </Routes>
     </div>
   );

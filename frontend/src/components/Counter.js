@@ -26,14 +26,14 @@ export default function counter() {
             <div class="container text-center">
                 <div class="row">
                     <div class="col" style={boxStyles}>
-                        <CountUp start={0} end={56} duration={20} enableScrollSpy={true}>
+                        <CountUp start={0} end={568} duration={20} enableScrollSpy={true}>
                             {({ countUpRef }) => (
                                 <div style={{fontSize : '150px'}}>
                                     <span ref={countUpRef} />
                                 </div>
                             )}
                         </CountUp>
-                        
+                        Families Helped
                     </div>
                     <div class="col" style={boxStyles}>
                         <CountUp start={0} end={2032} duration={20} enableScrollSpy={true}>
@@ -43,19 +43,8 @@ export default function counter() {
                                 </div>
                             )}
                         </CountUp>
-                    
+                        Kgs of food donated
                     </div>
-                    {/* <div class="col" style={boxStyles}>
-                        
-                        <CountUp start={0} end={1631} duration={10} enableScrollSpy={true}>
-                            {({ countUpRef }) => (
-                                <div style={{fontSize : '150px'}}>
-                                    <span ref={countUpRef} />
-                                </div>
-                            )}
-                        </CountUp>
-                        
-                    </div> */}
                 </div>
             </div>
 

@@ -8,7 +8,7 @@ export default function Navbar1 () {
       <Navbar expand="lg" collapseOnSelect>
         <Container>
           <Navbar.Brand href="/">
-            <img src="" style={{ height: "40px", width: "auto" }}></img>
+            Ishan Mujumdar
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
