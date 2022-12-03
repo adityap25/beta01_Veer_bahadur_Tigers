@@ -23,6 +23,11 @@ export default function Login() {
         .then(res => {
             if (res.data.msg === 'Login Success') {
                 navigate('/');
+    
+                let token = res.data.access
+
+                localStorage.setItem('token', token)
+
             }
             console.log(res);
         }

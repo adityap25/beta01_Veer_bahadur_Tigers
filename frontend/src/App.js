@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Donate from './pages/Donate';
 import List from './pages/List1';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/register' element={<Register />}/>
         <Route path='/donate' element={<Donate />}/>
         <Route path='/list' element={<List />}/>
+        <Route path='/profile' element={<Profile />}/>
         
       </Routes>
     </div>
