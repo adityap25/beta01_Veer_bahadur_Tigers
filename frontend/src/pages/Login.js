@@ -1,14 +1,38 @@
 import { Radio, TextField, Button } from '@mui/material';
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+
     async function handleSubmit(e) {
-        console.log("Submitted")
+        e.preventDefault();
+        
+        console.log(password);
+        await axios.post('http://127.0.0.1:8000/api/user/login/', {
+            email,
+            password,
+
+        }, {withCredentials : false}) 
+        .then(res => {
+            if (res.data.msg === 'Login Success') {
+                navigate('/');
+            }
+            console.log(res);
+        }
+        ).catch(err => {
+            console.log(err);
+        }
+        );
+
+        console.log("Working")
+
     }
 
     return (
@@ -41,7 +65,7 @@ export default function Login() {
 
                     <Link to='/register'>Not donated before? Register here</Link>
 
-                    <Button type="submit" variant="contained" color="primary">
+                    <Button type="submit" variant="contained" color="primary" onClick={handleSubmit}>
                         Login
                     </Button>
 
