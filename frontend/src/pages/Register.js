@@ -13,10 +13,9 @@ export default function Register() {
     const [desc, setDesc] = useState('');
 
     const navigate = useNavigate();
-    
+
     async function handleSubmit(e) {
         e.preventDefault();
-        const type = document.querySelector('input[name="radio"]:checked').value;
         
         console.log(password);
         await axios.post('http://localhost:3001/admin/login', {
@@ -37,6 +36,8 @@ export default function Register() {
             console.log(err);
         }
         );
+
+        console.log("Working")
 
     }
 
@@ -97,7 +98,7 @@ export default function Register() {
                     <TextField
                         label="Confirm Password"
                         variant="outlined"
-                        type="password2"
+                        type="password"
                         required
                         value={password2}
                         onChange={e => setPassword2(e.target.value)}
@@ -107,7 +108,6 @@ export default function Register() {
                     <TextField
                         label="About you"
                         variant="outlined"
-                        required
                         value={desc}
                         onChange={e => setDesc(e.target.value)}
                         sx={{width: '30em'}}
@@ -115,7 +115,7 @@ export default function Register() {
 
                     <br />
 
-                    <Button type="submit" variant="contained" color="primary">
+                    <Button type="submit" variant="contained" color="primary" onClick={handleSubmit}>
                         Register
                     </Button>
 
