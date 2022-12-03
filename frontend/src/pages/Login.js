@@ -22,11 +22,11 @@ export default function Login() {
         }, {withCredentials : false}) 
         .then(res => {
             if (res.data.msg === 'Login Success') {
-                navigate('/');
-    
-                let token = res.data.access
-
+                
+                const token = res.data.token.access
+                console.log(res.data.token.access)
                 localStorage.setItem('token', token)
+                navigate('/');
 
             }
             console.log(res);

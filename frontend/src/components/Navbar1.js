@@ -1,18 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import axios from "axios";
 
 export default function Navbar1 () {
 
-    const [loggedIn, setLoggedIn] = useState(false)
-    const [name, setName] = useState('')
-
-    if(localStorage.getItem('token') != null) {
-        setLoggedIn(true)
-        axios.get('http://127.0.0.1:8000/api/user/').then((res) => {
-            setName(res.data.name)
-        });
-    }
+  
 
   return (
     <header>
@@ -29,8 +21,7 @@ export default function Navbar1 () {
               <Nav.Link href="/">About</Nav.Link>
               <Nav.Link href="/donate">Donate</Nav.Link>
               <Nav.Link href="/list">List</Nav.Link>
-
-              <Nav.Link href={ (loggedIn == true) ? "/profile" : "/login" }>{ (loggedIn == true) ? {name} : "Login"  }</Nav.Link>
+              <Nav.Link href={(localStorage.getItem('name') == null) ? '/login' : '/profile'}>{(localStorage.getItem('name') == null) ? 'Login' : localStorage.getItem('name')}</Nav.Link>
               
             </Nav>
           </Navbar.Collapse>

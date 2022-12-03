@@ -93,8 +93,11 @@ def admin_status2(request):
     
 
 
-
-        
+# @api_view(['GET', 'POST','PUT','DELETE'])
+# @permission_classes([IsAuthenticated,IsAdminUser])
+# def admin_view_zero(request):
+#     if request.method== 'GET':
+#         data= Donation.objects.get
 
 
 
