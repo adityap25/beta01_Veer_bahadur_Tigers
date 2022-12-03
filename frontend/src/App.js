@@ -8,17 +8,18 @@ import { Container } from 'react-bootstrap';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Donate from './pages/Donate';
-
+import List from './pages/List1';
 
 function App() {
   return (
     <div className="App">
 
       <Routes>
-         <Route path='/' element={<HomePage />}/>
+        <Route path='/' element={<HomePage />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
         <Route path='/donate' element={<Donate />}/>
+        <Route path='/list' element={<List />}/>
         
       </Routes>
     </div>

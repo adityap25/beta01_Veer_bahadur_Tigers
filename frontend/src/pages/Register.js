@@ -8,6 +8,7 @@ export default function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [description, setDescription] = useState('');
 
     async function handleSubmit(e) {
         console.log("Submitted")
@@ -72,6 +73,15 @@ export default function Register() {
                         required
                         value={confirmPassword}
                         onChange={e => setConfirmPassword(e.target.value)}
+                        sx={{width: '30em'}}
+                    />
+
+                    <TextField
+                        label="About you"
+                        variant="outlined"
+                        required
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
                         sx={{width: '30em'}}
                     />
 

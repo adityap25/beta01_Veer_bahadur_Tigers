@@ -16,8 +16,8 @@ export default function Navbar1 () {
               className="ms-auto"
             >
               <Nav.Link href="/">About</Nav.Link>
-              <Nav.Link href="/">Donate</Nav.Link>
-              <Nav.Link href="/">List</Nav.Link>
+              <Nav.Link href="/donate">Donate</Nav.Link>
+              <Nav.Link href="/list">List</Nav.Link>
               <Nav.Link href="/login">Login</Nav.Link>
             </Nav>
           </Navbar.Collapse>
