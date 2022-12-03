@@ -1,7 +1,7 @@
 import { Radio, TextField, Button } from '@mui/material';
 import React, { useState } from 'react';
 import axios from "axios";
-
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
 
@@ -12,6 +12,8 @@ export default function Register() {
     const [password2, setPassword2] = useState('');
     const [desc, setDesc] = useState('');
 
+    const navigate = useNavigate();
+    
     async function handleSubmit(e) {
         e.preventDefault();
         const type = document.querySelector('input[name="radio"]:checked').value;
@@ -21,13 +23,13 @@ export default function Register() {
             email,
             name,
             mobile,
-            description,
+            desc,
             password,
             password2
 
         }).then(res => {
             if (res.data === 'Success') {
-                navigate('/admin');
+                navigate('/login');
             }
             console.log(res);
         }
