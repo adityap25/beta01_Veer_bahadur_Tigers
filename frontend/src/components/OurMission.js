@@ -37,11 +37,11 @@ export default function OurMission() {
                 <div className="row" style={stylesRow}>
                         <div className="col" style={{ textAlign: 'right' }}>
                             <h4>WHY WE EXIST</h4>
-                            We aim to eradicate hunger at the basic level. Through our efforts, we want to ensure that the voices of the malnourished and the hungry in India are heard and their needs are satisfied.
+                            We aim to eradicate hunger at the basic level. Through our efforts, we want to ensure that the food donors seamlessly get connected to the ngos so that the malnourished and the hungry in India are heard and their needs are satisfied.
                         </div>
                         <div className="col" style={{ textAlign: 'left' }}>
                             <h4>OUR PURPOSE</h4>
-                            Our purpose is to feed those who struggle to feed themselveds. Through our food distribution network, we connect donors with those who need the feed the most
+                            Our purpose is to feed those who struggle to feed themselveds. Through our food distribution network, we connect donors with those who need the feed the most.
                         </div>
                 </div>
 
