@@ -49,7 +49,9 @@ class UserProfileView(APIView):
   permission_classes = [IsAuthenticated]
   def get(self, request, format=None):
     serializer = UserProfileSerializer(request.user)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    data=serializer.data
+    data['mobile']=request.user.mobile
+    return Response(data, status=status.HTTP_200_OK)
 
 
 
@@ -77,19 +79,28 @@ def IsValid(request):
   return Response(res)
 
 
-
 @api_view(['GET', 'POST','PUT','DELETE'])
 @permission_classes([IsAuthenticated])
 def user_donation(request):
     if request.method== 'GET':
-        mydata = Donation.objects.filter(status=3,donor=f"{request.user}").values()
-        serializer=DonationSerializer(mydata,many=True)
-        return JsonResponse(serializer.data,safe=False)
+        mydata = Donation.objects.filter(status=3,donor=f"{request.user}")
+        ans=[]
+        for stu in mydata:
+            data=DonationSerializer(stu).data
+            id=stu.pk
+            data['id']=id
+            ans.append(data)
+        return JsonResponse(ans,safe=False)
 
 @api_view(['GET', 'POST','PUT','DELETE'])
 @permission_classes([IsAuthenticated])
-def user_recieved(request):
+def user_recieve(request):
     if request.method== 'GET':
-        mydata = Donation.objects.filter(status=3,reciever=f"{request.user}").values()
-        serializer=DonationSerializer(mydata,many=True)
-        return JsonResponse(serializer.data,safe=False)
+        mydata = Donation.objects.filter(status=3,reciever=f"{request.user}")
+        ans=[]
+        for stu in mydata:
+            data=DonationSerializer(stu).data
+            id=stu.pk
+            data['id']=id
+            ans.append(data)
+        return JsonResponse(ans,safe=False)

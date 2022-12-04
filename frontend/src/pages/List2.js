@@ -56,7 +56,7 @@ function createData(donor, wheat, rice, milk, fruits) {
 //   // createData('Sanjay', 1, 0, 4, 4, 1),
 // ];
 
-export default function ListForNGOs() {
+export default function List2() {
 
   // const navigate = useNavigate();
   //   useEffect(() => {
@@ -72,10 +72,10 @@ export default function ListForNGOs() {
 
   useEffect(() => {
     const token = localStorage.getItem('token')
-    axios.get('http://127.0.0.1:8000/api/donation/ngolist/', { headers: {"Authorization" : `Bearer ${token}`} })
+    axios.get('http://127.0.0.1:8000/api/donation/admin/status/two/', { headers: {"Authorization" : `Bearer ${token}`} })
     .then(res => {
         console.log(res)
-        setData(res.data) 
+        setData(res.data)
     })
   }, []);
 
@@ -93,7 +93,7 @@ export default function ListForNGOs() {
     window.location.reload()
   }
 
-  function onSelect(row) {
+  function onSelect1(row) {
     const token = localStorage.getItem('token')
     console.log(row)
     axios.post('http://127.0.0.1:8000/api/donation/', {
@@ -103,7 +103,23 @@ export default function ListForNGOs() {
         milk:row.milk,
         fruits:row.fruits,
         pin:row.pin,
-        status:2,
+        status:3,
+        reciever:row.reciever,
+    }, { headers: {"Authorization" : `Bearer ${token}`} })
+    onDelete(row);
+    window.location.reload()
+  }
+  function onSelect2(row) {
+    const token = localStorage.getItem('token')
+    console.log(row)
+    axios.post('http://127.0.0.1:8000/api/donation/', {
+         donor:row.donor,
+         wheat:row.wheat,
+        rice:row.rice,
+        milk:row.milk,
+        fruits:row.fruits,
+        pin:row.pin,
+        status:1,
         reciever:row.reciever,
     }, { headers: {"Authorization" : `Bearer ${token}`} })
     onDelete(row);
@@ -113,9 +129,8 @@ export default function ListForNGOs() {
   return (
 
     <div>
-    
-    <Navbar1 />
 
+    <Navbar1 />
     <br />
 
     <TableContainer component={Paper}>
@@ -123,6 +138,7 @@ export default function ListForNGOs() {
         <TableHead>
           <TableRow>
             <StyledTableCell>User</StyledTableCell>
+            <StyledTableCell>Reciever</StyledTableCell>
             <StyledTableCell align="right">Wheat(kg)</StyledTableCell>
             <StyledTableCell align="right">Dal(kg)</StyledTableCell>
             <StyledTableCell align="right">Fruits(kg)</StyledTableCell>
@@ -135,13 +151,17 @@ export default function ListForNGOs() {
               <StyledTableCell component="th" scope="row">
                 {row.donor}
               </StyledTableCell>
+              <StyledTableCell align="right">{row.reciever}</StyledTableCell>
               <StyledTableCell align="right">{row.wheat}</StyledTableCell>
               <StyledTableCell align="right">{row.rice}</StyledTableCell>
               <StyledTableCell align="right">{row.milk}</StyledTableCell>
               <StyledTableCell align="right">{row.fruits}</StyledTableCell>
               <div className='list-button'>
-              <Button color='success' variant="contained" onClick={() => onSelect(row)}>
+              <Button color='success' variant="contained" onClick={() => onSelect1(row)}>
               &#x2713;
+              </Button>
+              <Button color='error' variant="contained" onClick={() => onSelect2(row)}>
+              &#x2717;
               </Button>
               </div>
             </StyledTableRow>
@@ -150,7 +170,7 @@ export default function ListForNGOs() {
         </TableBody>
       </Table>
     </TableContainer>
-    
+
     </div>
   );
 }

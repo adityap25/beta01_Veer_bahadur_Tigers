@@ -1,5 +1,4 @@
 from django.shortcuts import render
-import requests
 from .models import Donation
 from .serializers import DonationSerializer
 from django.http import JsonResponse
@@ -98,17 +97,28 @@ def admin_view_zero(request):
 @permission_classes([IsAuthenticated,IsAdminUser])
 def admin_view_two(request):
     if request.method== 'GET':
-        mydata = Donation.objects.filter(status=2).values()
-        serializer=DonationSerializer(mydata,many=True)
-        return JsonResponse(serializer.data,safe=False)
+        mydata = Donation.objects.filter(status=2)
+        ans=[]
+        for stu in mydata:
+            data=DonationSerializer(stu).data
+            id=stu.pk
+            data['id']=id
+            ans.append(data)
+        return JsonResponse(ans,safe=False)
 
 @api_view(['GET', 'POST','PUT','DELETE'])
 @permission_classes([IsAuthenticated])
 def ngo_list_view(request):
     if request.method== 'GET':
-        mydata = Donation.objects.filter(status=1).values()
-        serializer=DonationSerializer(mydata,many=True)
-        return JsonResponse(serializer.data,safe=False)
+        mydata = Donation.objects.filter(status=1)
+        ans=[]
+        for stu in mydata:
+            data=DonationSerializer(stu).data
+            id=stu.pk
+            data['id']=id
+            if data['donor'] is not f"{request.user}":
+                ans.append(data)
+        return JsonResponse(ans,safe=False)
 
 
 

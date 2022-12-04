@@ -11,6 +11,7 @@ import Donate from './pages/Donate';
 import List from './pages/List1';
 import Profile from './pages/Profile';
 import ListForNGOs from './pages/ListForNGOs';
+import List2 from './pages/List2';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path = '/listforngos' element={<ListForNGOs />} />
         <Route path='/list' element={<List />}/>
         <Route path='/profile' element={<Profile />}/>
+        <Route path = '/list2' element={<List2 />} />
         
       </Routes>
     </div>
