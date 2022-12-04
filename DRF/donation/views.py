@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import requests
 from .models import Donation
 from .serializers import DonationSerializer
 from django.http import JsonResponse
@@ -61,18 +62,6 @@ def admin_status0(request):
         res={'msg':'Deleted'}
         return JsonResponse(res)
 
-    if request.method=='PUT':
-        id=request.data['id']
-        print(id)
-        stu=Donation.objects.get(id=id)
-        data={'donor':stu.donor,'status':1}
-        serializer=DonationSerializer(stu,data=data,partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            res={'msg':'updated successfully'}
-            return JsonResponse(res)
-        return JsonResponse(serializer.errors)
-
 @api_view(['GET', 'POST','PUT','DELETE'])
 @permission_classes([IsAuthenticated,IsAdminUser])
 def admin_status2(request):
@@ -110,6 +99,14 @@ def admin_view_zero(request):
 def admin_view_two(request):
     if request.method== 'GET':
         mydata = Donation.objects.filter(status=2).values()
+        serializer=DonationSerializer(mydata,many=True)
+        return JsonResponse(serializer.data,safe=False)
+
+@api_view(['GET', 'POST','PUT','DELETE'])
+@permission_classes([IsAuthenticated])
+def ngo_list_view(request):
+    if request.method== 'GET':
+        mydata = Donation.objects.filter(status=1).values()
         serializer=DonationSerializer(mydata,many=True)
         return JsonResponse(serializer.data,safe=False)
 

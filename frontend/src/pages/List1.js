@@ -93,16 +93,19 @@ export default function CustomizedTables() {
 
   function onSelect(row) {
     const token = localStorage.getItem('token')
-    console.log(row.id)
-    axios.put('http://127.0.0.1:8000/api/donation/admin/zero/', {
-      headers: {
-        "Authorization" : `Bearer ${token}`
-      },
-      data: {
-        'id':row.id
-      }
-    })
-    // window.location.reload()
+    console.log(row)
+    axios.post('http://127.0.0.1:8000/api/donation/', {
+         donor:row.donor,
+         wheat:row.wheat,
+        rice:row.rice,
+        milk:row.milk,
+        fruits:row.fruits,
+        pin:row.pin,
+        status:1,
+        reciever:row.reciever,
+    }, { headers: {"Authorization" : `Bearer ${token}`} })
+    onDelete(row);
+    window.location.reload()
   }
 
   return (
