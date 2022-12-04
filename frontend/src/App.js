@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import Donate from './pages/Donate';
 import List from './pages/List1';
 import Profile from './pages/Profile';
+import ListForNGOs from './pages/ListForNGOs';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route path='/register' element={<Register />}/>
         {/* <Route path={(localStorage.getItem('token') != null) ? '/donate' : '/login'} element={<Donate />}/> */}
         <Route path='/donate' element={<Donate />}/>
-
+        <Route path = '/listforngos' element={<ListForNGOs />} />
         <Route path='/list' element={<List />}/>
         <Route path='/profile' element={<Profile />}/>
         

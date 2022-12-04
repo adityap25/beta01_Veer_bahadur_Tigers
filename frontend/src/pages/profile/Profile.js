@@ -6,10 +6,13 @@ import './profile.css'
 import { donations } from './donations';
 import { received } from './received';
 import Temp from './Temp';
+import Navbar1 from '../../components/Navbar1';
 
 const Profile = () => {
   return (
     <>
+      <Navbar1 />
+      <br />
       <section className="profile">
         <div className="profile-details">
           <h2 className='profile_heading'><u>User Details</u></h2>
@@ -30,7 +33,15 @@ const Profile = () => {
           <h2 className='profile_heading'><u>Received</u></h2>
           <Temp data={received} />
         </div>
+
       </section>
+
+      <button onClick={() => {
+        localStorage.clear()
+        window.location.reload()
+      }}>Logout</button>
+        
+
     </>
   )
 };

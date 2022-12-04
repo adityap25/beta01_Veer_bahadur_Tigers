@@ -56,7 +56,7 @@ function createData(donor, wheat, rice, milk, fruits) {
 //   // createData('Sanjay', 1, 0, 4, 4, 1),
 // ];
 
-export default function CustomizedTables() {
+export default function ListForNGOs() {
 
   // const navigate = useNavigate();
   //   useEffect(() => {
@@ -72,49 +72,34 @@ export default function CustomizedTables() {
 
   useEffect(() => {
     const token = localStorage.getItem('token')
-    axios.get('http://127.0.0.1:8000/api/donation/admin/status/zero/', { headers: {"Authorization" : `Bearer ${token}`} })
+    axios.get('http://127.0.0.1:8000/api/donation/ngolist/', { headers: {"Authorization" : `Bearer ${token}`} })
     .then(res => {
         console.log(res)
-        setData(res.data)
+        setData(res.data) 
     })
   }, []);
 
-  function onDelete(row) {
-    const token = localStorage.getItem('token')
-    console.log(row)
-    axios.delete('http://127.0.0.1:8000/api/donation/admin/zero/', {
-      headers: {
-        "Authorization" : `Bearer ${token}`
-      },
-      data: {
-        'id':row.id
-      }
-    })
-    window.location.reload()
-  }
-
   function onSelect(row) {
     const token = localStorage.getItem('token')
-    console.log(row)
-    axios.post('http://127.0.0.1:8000/api/donation/', {
-         donor:row.donor,
-         wheat:row.wheat,
-        rice:row.rice,
-        milk:row.milk,
-        fruits:row.fruits,
-        pin:row.pin,
-        status:1,
-        reciever:row.reciever,
-    }, { headers: {"Authorization" : `Bearer ${token}`} })
-    onDelete(row);
-    window.location.reload()
+    console.log(row.id)
+    // axios.put('http://127.0.0.1:8000/api/donation/admin/zero/', {
+    //   headers: {
+    //     "Authorization" : `Bearer ${token}`
+    //   },
+    //   data: {
+    //     'id':row.id,
+    //     'status' : 2
+    //   }
+    // })
+    // window.location.reload()
   }
 
   return (
 
     <div>
-
+    
     <Navbar1 />
+
     <br />
 
     <TableContainer component={Paper}>
@@ -142,9 +127,6 @@ export default function CustomizedTables() {
               <Button color='success' variant="contained" onClick={() => onSelect(row)}>
               &#x2713;
               </Button>
-              <Button color='error' variant="contained" onClick={() => onDelete(row)}>
-              &#x2717;
-              </Button>
               </div>
             </StyledTableRow>
           ))}
@@ -152,7 +134,7 @@ export default function CustomizedTables() {
         </TableBody>
       </Table>
     </TableContainer>
-
+    
     </div>
   );
 }
