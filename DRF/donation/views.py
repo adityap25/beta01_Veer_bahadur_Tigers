@@ -116,8 +116,8 @@ def ngo_list_view(request):
             data=DonationSerializer(stu).data
             id=stu.pk
             data['id']=id
-            if data['donor'] is not f"{request.user}":
-                ans.append(data)
+            if data['donor'] != f"{request.user}":
+             ans.append(data)
         return JsonResponse(ans,safe=False)
 
 

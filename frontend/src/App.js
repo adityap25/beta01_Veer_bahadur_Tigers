@@ -9,7 +9,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Donate from './pages/Donate';
 import List from './pages/List1';
-import Profile from './pages/Profile';
+import Profile from './pages/profile/Profile.js';
 import ListForNGOs from './pages/ListForNGOs';
 import List2 from './pages/List2';
 
@@ -21,7 +21,7 @@ function App() {
         <Route path='/' element={<HomePage />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
-        {/* <Route path={(localStorage.getItem('token') != null) ? '/donate' : '/login'} element={<Donate />}/> */}
+        {/* <Route path={(localStorage.getItem('name') != null) ? '/profile' : '/login'} element={<Profile />}/> */}
         <Route path='/donate' element={<Donate />}/>
         <Route path = '/listforngos' element={<ListForNGOs />} />
         <Route path='/list' element={<List />}/>

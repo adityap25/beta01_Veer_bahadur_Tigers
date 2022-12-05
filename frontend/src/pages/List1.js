@@ -58,17 +58,16 @@ function createData(donor, wheat, rice, milk, fruits) {
 
 export default function CustomizedTables() {
 
-  // const navigate = useNavigate();
-  //   useEffect(() => {
-  //       const token = localStorage.getItem('token')
-  //       if(token == null)
-  //           navigate('/login')
+  const navigate = useNavigate();
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        if(token == null)
+            navigate('/login')
             
-  //   }, []);
+    }, []);
 
   const [data, setData] = React.useState([])
 
-  const navigate = useNavigate()
 
   useEffect(() => {
     const token = localStorage.getItem('token')

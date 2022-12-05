@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import ParticlesBg from "particles-bg";
+import Navbar1 from '../components/Navbar1';
 
 let config = {
     num: [4, 7],
@@ -59,6 +60,7 @@ export default function Login() {
 
     return (
         <div>
+            <Navbar1 />
             <div className='form'>
 
                 <h1 className='text-center' style={{ marginTop: '200px' }}>Login</h1>

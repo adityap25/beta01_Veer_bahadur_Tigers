@@ -12,7 +12,7 @@ export default function Navbar1 () {
       <Navbar expand="lg" collapseOnSelect>
         <Container>
           <Navbar.Brand href="/">
-            Ishan Mujumdar
+            Food For All
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

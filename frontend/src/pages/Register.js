@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import ParticlesBg from "particles-bg";
+import Navbar1 from '../components/Navbar1';
 
 let config = {
     num: [4, 7],
@@ -64,6 +65,7 @@ export default function Register() {
 
     return (
         <div>
+                 <Navbar1 />
             <div className='form'>
 
                 <h1 className='text-center' style={{ marginTop: '200px' }}>Register</h1>

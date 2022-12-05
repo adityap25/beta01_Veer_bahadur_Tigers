@@ -4,13 +4,13 @@ import { useEffect } from "react";
 
 export default function Donate() {
 
-    // const navigate = useNavigate();
-    // useEffect(() => {
-    //     const token = localStorage.getItem('token')
-    //     if(token == null)
-    //         navigate('/login')
+    const navigate = useNavigate();
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        if(token == null)
+            navigate('/login')
             
-    // }, []);
+    }, []);
 
     return (
         <div>

@@ -1,14 +1,8 @@
 import Profile from '../pages/profile/Profile'
-
+import { useNavigate } from 'react-router-dom';
 export default function Prof() {
 
-    // const navigate = useNavigate();
-    // useEffect(() => {
-    //     const token = localStorage.getItem('token')
-    //     if(token == null)
-    //         navigate('/login')
-            
-    // }, []);
+    
 
     return (
         <div>

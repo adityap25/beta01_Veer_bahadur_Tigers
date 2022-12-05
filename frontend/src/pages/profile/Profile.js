@@ -6,31 +6,40 @@ import './profile.css'
 import { donations } from './donations';
 import { received } from './received';
 import Temp from './Temp';
+import Temp2 from './Temp2'
 import Navbar1 from '../../components/Navbar1';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 const Profile = () => {
+  const navigate = useNavigate();
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        if(token == null)
+            navigate('/login')
+            
+    }, []);
 
-  const [profile, setProfile] = useState()
-  const [receive, setReceive] = useState()
-  const [donated, setDonated] = useState()
+  const [profile, setProfile] = useState([])
+  const [recieve, setRecieve] = useState([])
+  const [donated, setDonated] = useState([])
 
   useEffect(() => {
     const token = localStorage.getItem('token')
     axios.get('http://127.0.0.1:8000/api/user/profile/', { headers: {"Authorization" : `Bearer ${token}`} })
     .then(res => {
-        // console.log(res)
+        console.log(res)
         setProfile(res.data)
     })
+
   }, []);
 
   useEffect(() => {
     const token = localStorage.getItem('token')
     axios.get('http://127.0.0.1:8000/api/user/recieve/', { headers: {"Authorization" : `Bearer ${token}`} })
     .then(res => {
-        // console.log(res)
-        setReceive(res.data)
+        console.log(res)
+        setRecieve(res.data)
     })
   }, []);
 
@@ -38,7 +47,7 @@ const Profile = () => {
     const token = localStorage.getItem('token')
     axios.get('http://127.0.0.1:8000/api/user/donation/', { headers: {"Authorization" : `Bearer ${token}`} })
     .then(res => {
-        // console.log(res)
+        console.log(res)
         setDonated(res.data)
     })
   }, []);
@@ -63,7 +72,7 @@ const Profile = () => {
 
         <div className="profile-add">
           <h2 className='profile_heading'><u>Received</u></h2>
-          <Temp data={receive} />
+          <Temp data={recieve} />
         </div>
 
       </section>
