@@ -24,8 +24,10 @@ def donation(request):
 
     if request.method=='POST':
         data=request.data
-        data['donor']=f"{request.user}"
-        data['reciever']=f"{request.user}"
+        if 'donor' not in data.keys() or data['donor'] == "xyz@gmail.com":
+            data['donor']=f"{request.user}"
+        if 'reciever' not in data.keys() or ( 'status' in data.keys() and data['status'] == 1 and data['reciever'] is not {request.user}):    
+            data['reciever']=f"{request.user}"
         serializer=DonationSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
